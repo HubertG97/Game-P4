@@ -32,9 +32,9 @@ class Game{
     private gameLoop(){
             console.log('loop');
             this.ctx.fillStyle = "black";
-            this.ctx.fillRect(0, 0, 1280, 720);
-            this.ball.draw();
+            this.ctx.fillRect(0, 0, 1200, 700);
             this.ball.move();
+            this.ball.bounce();
             requestAnimationFrame(() => this.gameLoop());
         }
 

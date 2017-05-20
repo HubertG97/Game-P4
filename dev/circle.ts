@@ -21,7 +21,7 @@ class Circle implements iShape {
         let canvas = game.canvas;
 
         ctx.save();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         ctx.beginPath();
         ctx.strokeStyle = this.color;
         ctx.lineWidth = this.lineWidth;
@@ -32,4 +32,6 @@ class Circle implements iShape {
         ctx.restore();
         console.log('drawn')
     }
+
+
 }

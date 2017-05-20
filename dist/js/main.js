@@ -23,9 +23,9 @@ var Game = (function () {
         var _this = this;
         console.log('loop');
         this.ctx.fillStyle = "black";
-        this.ctx.fillRect(0, 0, 1280, 720);
-        this.ball.draw();
+        this.ctx.fillRect(0, 0, 1200, 700);
         this.ball.move();
+        this.ball.bounce();
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     return Game;
@@ -48,7 +48,6 @@ var Circle = (function () {
             var ctx = game.ctx;
             var canvas = game.canvas;
             ctx.save();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.beginPath();
             ctx.strokeStyle = _this.color;
             ctx.lineWidth = _this.lineWidth;
@@ -71,15 +70,29 @@ var Ball = (function (_super) {
     __extends(Ball, _super);
     function Ball() {
         _super.call(this, 600, 650, 20);
-        this.Xspeed = 0;
-        this.Yspeed = 0;
-    }
-    Ball.prototype.move = function () {
         this.Xspeed = 2;
         this.Yspeed = -2;
+    }
+    Ball.prototype.move = function () {
         this.x += this.Xspeed;
         this.y += this.Yspeed;
     };
+    Ball.prototype.bounce = function () {
+        var game = Game.getInstance();
+        var ctx = game.ctx;
+        var canvas = game.canvas;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        this.draw();
+        if (this.x + this.Xspeed > canvas.width - this.radius || this.x + this.Xspeed < this.radius) {
+            this.Xspeed = -this.Xspeed;
+            console.log('bounce');
+        }
+        if (this.y + this.Yspeed > canvas.height - this.radius || this.y + this.Yspeed < this.radius) {
+            this.Yspeed = -this.Yspeed;
+            console.log('bounce');
+        }
+    };
     return Ball;
 }(Circle));
+setInterval(this.move, 10);
 //# sourceMappingURL=main.js.map
