@@ -1,5 +1,5 @@
 /// <reference path= "ishape.ts"/>
-/// <reference path= "main.ts"/>
+
 
 class Circle implements iShape {
     public x: number = 0;
@@ -15,13 +15,14 @@ class Circle implements iShape {
         this.color = color;
         this.lineWidth = line_width;
     }
+
+    //draw cirlce
     public draw = (): void => {
-        let game = Game.getInstance();
-        let ctx = game.ctx;
-        let canvas = game.canvas;
+
+        let ctx = Game.ctx;
+        let canvas = Game.canvas;
 
         ctx.save();
-
         ctx.beginPath();
         ctx.strokeStyle = this.color;
         ctx.lineWidth = this.lineWidth;
@@ -30,7 +31,7 @@ class Circle implements iShape {
         ctx.fill();
         ctx.stroke();
         ctx.restore();
-        console.log('drawn')
+
     }
 
 
